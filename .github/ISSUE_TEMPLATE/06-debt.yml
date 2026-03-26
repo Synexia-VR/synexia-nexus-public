@@ -1,0 +1,78 @@
+name: Tech Debt
+description: Deferred technical debt, cleanup, or refactor work
+title: "[Debt] "
+labels: ["type:debt"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for recognized technical debt, cleanup, or refactor work that should be tracked explicitly.
+
+        After creating the issue:
+        - assign the correct Milestone
+        - add it to the Project
+        - set Project fields
+        - set the Parent issue if applicable
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What debt exists and why?
+      placeholder: |
+        Describe the debt, how it appeared, and why it matters.
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact_if_ignored
+    attributes:
+      label: Impact if not addressed
+      value: |
+        - Risk:
+        - Future cost:
+        - What gets worse:
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_plan
+    attributes:
+      label: Proposed plan
+      value: |
+        - [ ] Step 1
+        - [ ] Step 2
+        - [ ] Step 3
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      value: |
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+
+  - type: input
+    id: parent_epic
+    attributes:
+      label: Parent Epic
+      description: Optional Epic reference
+      placeholder: "#123 [Epic][M5] Platform Hardening"
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Optional relevant files, dependencies, or warnings
+      placeholder: |
+        - Relevant modules
+        - Migration implications
+        - Follow-up notes
+    validations:
+      required: false

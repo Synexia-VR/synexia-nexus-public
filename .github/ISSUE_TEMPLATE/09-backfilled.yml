@@ -1,0 +1,80 @@
+name: Backfilled
+description: Historical issue for work that already exists and must be tracked retroactively
+title: "[Backfilled] "
+labels: ["source:backfilled"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template only for historical tracking of work that is already completed.
+
+        Rules:
+        - create the issue
+        - link it to the correct Epic
+        - assign the correct Milestone
+        - close it immediately after creation
+
+        Do not use this template for new pending work.
+
+  - type: textarea
+    id: backfilled_work
+    attributes:
+      label: What is being backfilled
+      placeholder: |
+        Describe the completed work that needs historical traceability.
+    validations:
+      required: true
+
+  - type: textarea
+    id: historical_scope
+    attributes:
+      label: Historical scope
+      value: |
+        Included:
+        - 
+        - 
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Files, modules, docs, or other evidence showing this already exists
+      value: |
+        - 
+        - 
+    validations:
+      required: true
+
+  - type: input
+    id: parent_epic
+    attributes:
+      label: Parent Epic
+      description: Optional Epic reference
+      placeholder: "#123 [Epic][M0] Repo & Docs Stabilization"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: historical_category
+    attributes:
+      label: Historical category
+      options:
+        - Feature
+        - Chore
+        - Docs
+        - Security
+        - Debt
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Optional context or reminders
+      placeholder: |
+        Remember to close this issue immediately after creation.
+    validations:
+      required: false

@@ -1,0 +1,85 @@
+name: Feature
+description: New functionality or meaningful functional expansion
+title: "[Feature] "
+labels: ["type:feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for new functionality or meaningful product expansion.
+
+        After creating the issue:
+        - assign the correct Milestone
+        - add it to the Project
+        - set Project fields (Status, Priority, Area, Sprint, Effort, Target date, Execution Mode)
+        - set the Parent issue if this belongs to an Epic
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / opportunity
+      description: What need does this feature solve?
+      placeholder: |
+        Describe the user or platform need and why it matters.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What is included and excluded?
+      value: |
+        Includes:
+        - 
+
+        Does not include:
+        - 
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      description: Clear, testable outcomes
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+
+  - type: textarea
+    id: how_to_test
+    attributes:
+      label: How to test
+      description: Manual or technical validation steps
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+
+  - type: input
+    id: parent_epic
+    attributes:
+      label: Parent Epic
+      description: Optional Epic reference
+      placeholder: "#123 [Epic][M1] Team Overview"
+    validations:
+      required: false
+
+  - type: textarea
+    id: technical_notes
+    attributes:
+      label: Technical notes
+      description: Optional endpoints, models, risks, constraints, or implementation notes
+      placeholder: |
+        - Relevant files/modules
+        - API endpoints
+        - Schema/model notes
+        - Constraints / risks
+    validations:
+      required: false

@@ -1,0 +1,73 @@
+name: Spike
+description: Timeboxed investigation with a concrete outcome
+title: "[Spike] "
+labels: ["type:spike"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for investigation work with a concrete output:
+        - compare options
+        - answer a technical question
+        - clarify scope before implementation
+        - produce a decision or recommendation
+
+        After creating the issue:
+        - assign the correct Milestone
+        - add it to the Project
+        - set Project fields
+        - set the Parent issue if applicable
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question to answer
+      placeholder: |
+        What exactly should this spike clarify or decide?
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_output
+    attributes:
+      label: Expected output
+      value: |
+        - [ ] Decision / recommendation
+        - [ ] Alternatives considered
+        - [ ] Follow-up proposal
+    validations:
+      required: true
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints / timebox
+      value: |
+        Timebox:
+        4–8h recommended
+
+        Constraints:
+        - 
+    validations:
+      required: true
+
+  - type: input
+    id: parent_epic
+    attributes:
+      label: Parent Epic
+      description: Optional Epic reference
+      placeholder: "#123 [Epic][M3] Rivals v1"
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Optional context, sources, or technical references
+      placeholder: |
+        - Context
+        - References
+        - Risks
+    validations:
+      required: false

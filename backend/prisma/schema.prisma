@@ -1,0 +1,323 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum OrganizationRole {
+  OWNER
+  MANAGER
+  COACH
+  ANALYST
+  PLAYER
+  COMMUNITY_MANAGER
+  PARTNER_MANAGER
+  VIEWER
+}
+
+enum TeamMemberRole {
+  PLAYER
+  COACH
+  ANALYST
+  STAFF
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  displayName  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  organizationUsers OrganizationUser[]
+  memberships       UserOrganizationMembership[]
+  players           Player[]
+  createdEvents     Event[]                      @relation("EventCreator")
+  teamMemberships   UserTeamMembership[]
+  refreshTokens     RefreshToken[]
+}
+
+model RefreshToken {
+  id                String    @id @default(uuid())
+  userId            String
+  tokenHash         String    @unique
+  expiresAt         DateTime
+  createdAt         DateTime  @default(now())
+  revokedAt         DateTime?
+  replacedByTokenId String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([tokenHash])
+}
+
+model Organization {
+  id             String   @id @default(uuid())
+  name           String
+  slug           String   @unique
+  timezone       String   @default("UTC")
+  planTier       String   @default("free")
+  primaryColor   String?
+  secondaryColor String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organizationUsers   OrganizationUser[]
+  memberships         UserOrganizationMembership[]
+  organizationModules OrganizationModule[]
+  teams               Team[]
+  players             Player[]
+  events              Event[]
+  matches             Match[]
+  playerSanctions     PlayerSanction[]
+  teamMemberships     UserTeamMembership[]
+}
+
+model UserOrganizationMembership {
+  id             String           @id @default(uuid())
+  userId         String
+  organizationId String
+  role           OrganizationRole
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, organizationId])
+}
+
+model OrganizationUser {
+  id             String   @id @default(uuid())
+  organizationId String
+  userId         String
+  orgRole        String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, userId])
+}
+
+model Module {
+  code        String  @id
+  name        String
+  description String?
+
+  organizationModules OrganizationModule[]
+}
+
+model OrganizationModule {
+  id             String   @id @default(uuid())
+  organizationId String
+  moduleCode     String
+  enabled        Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  module       Module       @relation(fields: [moduleCode], references: [code], onDelete: Cascade)
+
+  @@unique([organizationId, moduleCode])
+}
+
+model Game {
+  id        String   @id @default(uuid())
+  code      String   @unique
+  name      String
+  gameType  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  teams Team[]
+}
+
+model Team {
+  id             String   @id @default(uuid())
+  organizationId String
+  gameId         String
+  name           String
+  tag            String?
+  category       String   @default("main")
+  accentColor    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization    Organization         @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  game            Game                 @relation(fields: [gameId], references: [id])
+  teamRosters     TeamRoster[]
+  events          Event[]
+  matches         Match[]
+  userMemberships UserTeamMembership[]
+}
+
+model Player {
+  id             String   @id @default(uuid())
+  organizationId String
+  userId         String?
+  nickname       String
+  mainRole       String?
+  status         String   @default("active")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization      Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user              User?              @relation(fields: [userId], references: [id])
+  teamRosters       TeamRoster[]
+  eventAttendances  EventAttendance[]
+  shooterMatchStats ShooterMatchStat[]
+  playerSanctions   PlayerSanction[]
+  mmrHistory        PlayerMmrHistory[]
+}
+
+model TeamRoster {
+  id         String   @id @default(uuid())
+  teamId     String
+  playerId   String
+  roleInTeam String?
+  status     String   @default("active")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  player Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@unique([teamId, playerId])
+}
+
+model Event {
+  id               String    @id @default(uuid())
+  organizationId   String
+  teamId           String
+  type             String
+  title            String
+  description      String?
+  startDatetimeUtc DateTime
+  endDatetimeUtc   DateTime?
+  location         String?
+  createdByUserId  String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  organization     Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  team             Team              @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  creator          User?             @relation("EventCreator", fields: [createdByUserId], references: [id])
+  eventAttendances EventAttendance[]
+  match            Match?
+}
+
+model EventAttendance {
+  id        String   @id @default(uuid())
+  eventId   String
+  playerId  String
+  status    String   @default("invited")
+  attended  Boolean?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  event  Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  player Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@unique([eventId, playerId])
+}
+
+model Match {
+  id              String   @id @default(uuid())
+  organizationId  String
+  teamId          String
+  eventId         String?  @unique
+  opponentName    String
+  competitionName String?
+  result          String?
+  mapName         String?
+  playedAtUtc     DateTime
+  roundsWon       Int?
+  roundsLost      Int?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  organization      Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  team              Team               @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  event             Event?             @relation(fields: [eventId], references: [id])
+  shooterMatchStats ShooterMatchStat[]
+}
+
+// ============================================================================
+// SHOOTER STATS & MMR MODELS
+// ============================================================================
+
+model ShooterMatchStat {
+  id           String   @id @default(cuid())
+  matchId      String
+  playerId     String
+  kills        Int
+  deaths       Int
+  assists      Int
+  adr          Float
+  roundsPlayed Int?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  match  Match  @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  player Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@unique([matchId, playerId])
+}
+
+model PlayerSanction {
+  id             String    @id @default(cuid())
+  organizationId String
+  playerId       String
+  severity       Int
+  reason         String
+  active         Boolean   @default(true)
+  issuedAt       DateTime  @default(now())
+  expiresAt      DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  player       Player       @relation(fields: [playerId], references: [id], onDelete: Cascade)
+}
+
+model PlayerMmrHistory {
+  id               String   @id @default(cuid())
+  playerId         String
+  calculatedAt     DateTime @default(now())
+  periodStart      DateTime
+  periodEnd        DateTime
+  mmrValue         Int
+  performanceScore Float
+  commitmentScore  Float
+  behaviorScore    Float
+
+  player Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
+}
+
+// ============================================================================
+// USER TEAM MEMBERSHIPS (Per-Team RBAC)
+// ============================================================================
+
+model UserTeamMembership {
+  id             String         @id @default(uuid())
+  userId         String
+  organizationId String
+  teamId         String
+  role           TeamMemberRole
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  team         Team         @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, teamId])
+}

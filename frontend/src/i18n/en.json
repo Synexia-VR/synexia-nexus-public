@@ -1,0 +1,50 @@
+{
+  "app": {
+    "title": "Synexia Nexus",
+    "subtitle": "Esports Team Management Platform"
+  },
+  "navigation": {
+    "home": "Home",
+    "organizations": "Organizations",
+    "teams": "Teams",
+    "players": "Players",
+    "events": "Events",
+    "matches": "Matches",
+    "stats": "Stats"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "noData": "No data available",
+    "back": "Back"
+  },
+  "home": {
+    "welcome": "Welcome to Synexia Nexus",
+    "description": "Modular esports team management platform. Manage your organizations, teams, players, events, and matches all in one place."
+  },
+  "organizations": {
+    "title": "Organizations",
+    "noOrganizations": "No organizations found"
+  },
+  "teams": {
+    "title": "Teams",
+    "noTeams": "No teams found"
+  },
+  "players": {
+    "title": "Players",
+    "noPlayers": "No players found"
+  },
+  "events": {
+    "title": "Events",
+    "noEvents": "No events found"
+  },
+  "matches": {
+    "title": "Matches",
+    "noMatches": "No matches found"
+  },
+  "stats": {
+    "title": "Stats",
+    "noPlayerStats": "No player stats found for this team.",
+    "noMapStats": "No map stats found for this team."
+  }
+}

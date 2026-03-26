@@ -1,0 +1,31 @@
+{
+  "name": "synexia-nexus",
+  "version": "1.0.0",
+  "description": "Synexia Nexus - Modular esports team management platform",
+  "private": true,
+  "scripts": {
+    "dev": "cd backend && npm run dev & cd frontend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && npm run dev"
+  },
+  "keywords": [
+    "esports",
+    "management",
+    "teams"
+  ],
+  "author": "Synexia",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/pino-http": "^5.8.4",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "express-rate-limit": "^8.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "pino": "^10.2.1",
+    "pino-http": "^11.0.0",
+    "pino-pretty": "^13.1.3"
+  }
+}

@@ -1,0 +1,76 @@
+name: Security
+description: Security-sensitive work such as auth, RBAC, validation, secrets, or hardening
+title: "[Security] "
+labels: ["type:security"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for security-sensitive work:
+        - auth
+        - RBAC
+        - validation
+        - secrets handling
+        - hardening
+        - security-sensitive platform safeguards
+
+        After creating the issue:
+        - assign the correct Milestone
+        - add it to the Project
+        - set Project fields
+        - set the Parent issue if applicable
+
+  - type: textarea
+    id: problem_or_risk
+    attributes:
+      label: Problem / risk
+      placeholder: |
+        Describe the risk, weakness, or hardening need.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      value: |
+        Includes:
+        - 
+
+        Does not include:
+        - 
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+
+  - type: input
+    id: parent_epic
+    attributes:
+      label: Parent Epic
+      description: Optional Epic reference
+      placeholder: "#123 [Epic][M5] Platform Hardening"
+    validations:
+      required: false
+
+  - type: textarea
+    id: security_notes
+    attributes:
+      label: Security notes
+      description: Optional sensitive areas, constraints, or follow-up notes
+      placeholder: |
+        - Threat / exposure
+        - Sensitive modules
+        - Constraints
+        - Follow-up
+    validations:
+      required: false

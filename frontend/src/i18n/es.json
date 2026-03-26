@@ -1,0 +1,44 @@
+{
+  "app": {
+    "title": "Synexia Nexus",
+    "subtitle": "Plataforma de Gestión de Equipos de Esports"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "organizations": "Organizaciones",
+    "teams": "Equipos",
+    "players": "Jugadores",
+    "events": "Eventos",
+    "matches": "Partidos"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "noData": "No hay datos disponibles",
+    "back": "Volver"
+  },
+  "home": {
+    "welcome": "Bienvenido a Synexia Nexus",
+    "description": "Plataforma modular de gestión de equipos de esports. Gestiona tus organizaciones, equipos, jugadores, eventos y partidos en un solo lugar."
+  },
+  "organizations": {
+    "title": "Organizaciones",
+    "noOrganizations": "No se encontraron organizaciones"
+  },
+  "teams": {
+    "title": "Equipos",
+    "noTeams": "No se encontraron equipos"
+  },
+  "players": {
+    "title": "Jugadores",
+    "noPlayers": "No se encontraron jugadores"
+  },
+  "events": {
+    "title": "Eventos",
+    "noEvents": "No se encontraron eventos"
+  },
+  "matches": {
+    "title": "Partidos",
+    "noMatches": "No se encontraron partidos"
+  }
+}

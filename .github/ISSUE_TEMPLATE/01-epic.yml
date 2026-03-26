@@ -1,0 +1,90 @@
+name: Epic
+description: Parent issue for a milestone or major workstream
+title: "[Epic][M?] "
+labels: ["kind:epic"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template only for parent issues (Epics).
+
+        After creating the Epic:
+        - assign the correct Milestone
+        - add it to the Project
+        - set Project fields (Priority, Area, Target date, etc.)
+        - use it as the Parent issue for related work
+
+  - type: input
+    id: milestone
+    attributes:
+      label: Milestone
+      description: Which milestone does this Epic belong to?
+      placeholder: "M0 / M1 / M2 / M3 / M4 / M5 / M6"
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What is the main objective of this Epic?
+      placeholder: |
+        Describe the main outcome this Epic should achieve.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this Epic exists
+      description: Why is this workstream needed now?
+      placeholder: |
+        Explain the rationale, constraints, and expected value.
+    validations:
+      required: true
+
+  - type: textarea
+    id: in_scope
+    attributes:
+      label: In scope
+      description: What is included in this Epic?
+      value: |
+        - 
+        - 
+    validations:
+      required: true
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: What is explicitly excluded from this Epic?
+      value: |
+        - 
+        - 
+    validations:
+      required: true
+
+  - type: textarea
+    id: definition_of_done
+    attributes:
+      label: Definition of Done
+      description: What must be true to consider this Epic complete?
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+
+  - type: textarea
+    id: related_work
+    attributes:
+      label: Related issues / notes
+      description: Optional references, dependencies, or notes
+      placeholder: |
+        - Depends on #
+        - Related to #
+        - Notes
+    validations:
+      required: false

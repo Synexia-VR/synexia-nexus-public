@@ -1,0 +1,87 @@
+name: Bug
+description: Unexpected behavior or regression
+title: "[Bug] "
+labels: ["type:bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for something that is already implemented but is not working as expected.
+
+        After creating the issue:
+        - assign the correct Milestone
+        - add it to the Project
+        - set Project fields (Status, Priority, Area, Sprint, Effort, Target date, Execution Mode)
+        - set the Parent issue if applicable
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What is wrong?
+      placeholder: |
+        Briefly explain the bug or regression.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Provide a reproducible path
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_result
+    attributes:
+      label: Expected result
+      placeholder: |
+        Describe what should happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_result
+    attributes:
+      label: Actual result
+      placeholder: |
+        Describe what actually happens.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs / requestId / screenshots
+      description: Do not include secrets
+      placeholder: |
+        Add logs, request IDs, screenshots, stack traces, or other evidence.
+    validations:
+      required: false
+
+  - type: input
+    id: parent_epic
+    attributes:
+      label: Parent Epic
+      description: Optional Epic reference
+      placeholder: "#123 [Epic][M5] Platform Hardening"
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Technical notes
+      description: Optional debugging notes, suspected area, impact, or risk
+      placeholder: |
+        - Suspected module
+        - Possible cause
+        - Impact
+        - Risk
+    validations:
+      required: false

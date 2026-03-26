@@ -1,0 +1,74 @@
+name: Docs
+description: Create, fix, or align documentation
+title: "[Docs] "
+labels: ["type:docs"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for documentation work:
+        - create docs
+        - update docs
+        - align docs with implementation
+        - normalize placeholders or runbooks
+
+        After creating the issue:
+        - assign the correct Milestone
+        - add it to the Project
+        - set Project fields
+        - set the Parent issue if applicable
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What documentation work is needed?
+      placeholder: |
+        Describe what needs to be documented, corrected, or aligned.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What is included and excluded?
+      value: |
+        Includes:
+        - 
+
+        Does not include:
+        - 
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      value: |
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+
+  - type: input
+    id: parent_epic
+    attributes:
+      label: Parent Epic
+      description: Optional Epic reference
+      placeholder: "#123 [Epic][M0] Repo & Docs Stabilization"
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Optional affected files, references, or doc structure notes
+      placeholder: |
+        - Affected docs
+        - Source of truth
+        - Alignment notes
+    validations:
+      required: false

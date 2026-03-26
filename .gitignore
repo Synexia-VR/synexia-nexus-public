@@ -1,0 +1,94 @@
+# Dependencies
+node_modules/
+dist/
+build/
+coverage/
+.cache/
+.turbo/
+.pnpm-store/
+backend/node_modules/
+frontend/node_modules/
+
+# Build outputs
+.vite/
+dist/
+build/
+backend/dist/
+frontend/dist/
+frontend/.vite/
+frontend/build/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+
+# Database
+data/
+docker-data/
+backups/
+*.sqlite
+*.sqlite3
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Prisma
+backend/prisma/migrations/*_migration/
+backend/prisma/*.db
+backend/prisma/*.db-journal
+
+# Cache
+.parcel-cache/
+.next/
+out/
+
+# Testing
+.nyc_output/
+
+# Misc
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_rsa.pub
+
+# Docker overrides
+docker-compose.override.yml
+
+# Replit local stuff
+.replit.state
+.breakpoints
+
+# Local API test artifacts (do not commit)
+cookies-*.txt
+login-*.json
+refresh-*.json
+me-orgs.json
+teams.json
+players.json
+A-*.json
+B-*.json
+*-me-orgs.json
+*-teams.json

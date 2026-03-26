@@ -1,0 +1,71 @@
+# --- Git internals ---
+.git/
+
+# --- CI workflows (avoid workflow-scope issues on public mirror) ---
+.github/workflows/
+workflows/
+publish-mirror.yml
+
+# --- Secrets / env / keys ---
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_rsa.pub
+
+# Common secret filenames (defensive)
+*secret*
+*secrets*
+
+# --- Internal-only docs (private repo only) ---
+docs/internal/
+docs-private/
+
+# --- Local/lab data ---
+data/
+docker-data/
+backups/
+*.sqlite
+*.sqlite3
+docker-compose.override.yml
+
+# --- Local API test artifacts (do not publish) ---
+cookies-*.txt
+login-*.json
+refresh-*.json
+me-orgs.json
+teams.json
+players.json
+A-*.json
+B-*.json
+
+# --- Dependencies / outputs ---
+node_modules/
+dist/
+build/
+coverage/
+.vite/
+.cache/
+.turbo/
+.pnpm-store/
+frontend/dist/
+frontend/.vite/
+
+# --- Logs / IDE / OS ---
+logs/
+*.log
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Assets a revisar antes de publicar ---
+attached_assets/
+
+# --- Replit/lab helper files (optional to keep private) ---
+replit.md
+start-dev.sh
+.replit
